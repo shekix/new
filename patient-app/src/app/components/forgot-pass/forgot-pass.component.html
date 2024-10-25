@@ -1,0 +1,48 @@
+<form class="p-3" [formGroup]="ForgotPassForm">
+    <div class="row g-0">
+        <div class="col text-center p-2 mb-3 bg-light heading">
+            <span class="fs-3">Update Password</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" formControlName="email">
+            @if(Email.errors?.['required'] && Email.touched){
+                <div class="form-text text-danger">
+                    Email is required
+                </div>
+            }
+            @if(Email.errors?.['email'] ){
+                <div class="form-text text-danger">
+                    Invalid email format
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="password" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+            @if(Password.errors?.['required'] && Password.touched){
+                <div class="form-text text-danger">
+                    Password is required
+                </div>
+            }
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col mb-3">
+            <label for="cpassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="cpassword" formControlName="cpassword">
+            <div class="form-text text-danger" [style.display]="confirmPassword">
+                password does not match
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button  class="btn btn-primary" [disabled]="ForgotPassForm.invalid" (click)="onSubmit()">Submit</button>
+        </div>
+    </div>
+</form>
